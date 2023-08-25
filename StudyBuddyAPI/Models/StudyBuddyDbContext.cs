@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,9 +21,8 @@ public partial class StudyBuddyDbContext : DbContext
     {
         modelBuilder.Entity<Question>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Question__3214EC0703CCF9B3");
+            entity.HasKey(e => e.Id).HasName("PK__Question__3214EC07C76CFC70");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Answer).HasMaxLength(250);
             entity.Property(e => e.Question1)
                 .HasMaxLength(250)
@@ -32,17 +31,14 @@ public partial class StudyBuddyDbContext : DbContext
 
         modelBuilder.Entity<Student>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Students__3214EC07B0719BDE");
+            entity.HasKey(e => e.Id).HasName("PK__Students__3214EC074FAFDB72");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Username).HasMaxLength(25);
         });
 
         //modelBuilder.Entity<StudentQuestionFavorite>(entity =>
         //{
-        //    entity.HasKey(e => e.Id).HasName("PK__StudentQ__3214EC07DAFA0E9D");
-
-        //    entity.Property(e => e.Id).ValueGeneratedNever();
+        //    entity.HasKey(e => e.Id).HasName("PK__StudentQ__3214EC07DDAE44BE");
 
         //    entity.HasOne(d => d.Question).WithMany(p => p.StudentQuestionFavorites)
         //        .HasForeignKey(d => d.QuestionId)

@@ -1,20 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 import { QuestionListComponent } from './question-list/question-list.component';
-import { QuestionAnswerComponent } from './question-answer/question-answer.component';
+import { AddQuestionComponent } from './add-question/add-question.component';
+import { HeaderComponent } from './header/header.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionListComponent,
-    QuestionAnswerComponent
+    QuestionListComponent,    
+    AddQuestionComponent,
+    HeaderComponent,
+    FavoriteComponent    
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,9 @@
+
+
+  <label for="students">Choose Student:</label>
+  <select name="" id="students" >
+
+        <option value=""  *ngFor="let student of students" (click)="selectStudent(student)">{{student.username}}</option>
+    
+    
+  </select>

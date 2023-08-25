@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace StudyBuddyAPI.Models;
@@ -9,5 +9,4 @@ public partial class Student
 
     public string Username { get; set; } = null!;
 
-    
 }

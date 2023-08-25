@@ -1,0 +1,15 @@
+<div class="center">
+    <h1>ADD A QUESTION!!!!</h1>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="pastel-yellow-card card mb-4">
+            <label for="question1">Question:</label>
+            <textarea id="question1" [(ngModel)]="newQuestion.question1" name="question1"></textarea>        
+            <label for="answer">Answer:</label>
+            <textarea id="answer" [(ngModel)]="newQuestion.answer" name="answer" class="mb-2"></textarea>
+            <button type="submit">Add Question</button>
+        </div>
+        
+    </form>
+    <button routerLink="/questions">back to list!</button>
+</div>

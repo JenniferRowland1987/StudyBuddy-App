@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace StudyBuddyAPI.Models;
@@ -11,5 +11,5 @@ public partial class StudentQuestionFavorite
 
     public int? QuestionId { get; set; }
 
-
+ 
 }
