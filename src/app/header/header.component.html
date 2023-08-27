@@ -1,9 +1,17 @@
+<h5>select a student</h5>
+<select name="students" id="students" (change)="onStudentSelected($event)">
+  <option value="">Select a student</option>
+  <option *ngFor="let student of students" [value]="student.id">{{ student.username }}</option>
+</select>
 
-
-  <label for="students">Choose Student:</label>
-  <select name="" id="students" >
-
-        <option value=""  *ngFor="let student of students" (click)="selectStudent(student)">{{student.username}}</option>
+<nav>
+  <ul>
+    <li><a routerLink="/favorites">View Favorite Questions</a></li>
     
-    
-  </select>
+  </ul>
+</nav>
+
+
+
+
+

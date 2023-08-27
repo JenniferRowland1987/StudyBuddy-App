@@ -1,25 +1,24 @@
-<app-header (studentSelected)="onStudentSelected($event)"></app-header>
-
-
 <div>
     <h1>STUDY QUESTIONS!!!!!</h1>
-    <a routerLink="/add-question">Add Question</a>
-    
- 
-    
-
+    <a routerLink="/add-question">Add Question</a><br>
+    <a routerLink="/favorites">Favorites</a>
 
     <div class="container">
         <div class="row">
+            <label for="students">Add to Favorites:</label>
+            <select name="students" id="students" [(ngModel)]="selectedStudentForFavorite" (change)="onStudentSelectedForFavorite()">
+              <option value="">Select a student</option>
+              <option *ngFor="let student of students" [value]="student.id">{{ student.username }}</option>
+            </select>
             <div *ngFor="let question of questions" class="col-md-4 mb-4">
                 <div class="pastel-yellow-card" (click)="toggleAnswer(question)">
                     <div class="question">{{ question.question1 }}</div>
                     <div class="answer" *ngIf="question.isAnswerVisible">{{ question.answer }}</div>
-                    
                 </div>
-                <button type="submit" (click)="createFavorite">Add to Favorites</button>
+                <div>
+                    <button (click)="addToFavoritesForStudent(selectedStudentForFavorite, question.id)">Add to Favorites</button>
+                </div>
             </div>
         </div>
     </div>
-
-
+</div>

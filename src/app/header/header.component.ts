@@ -8,7 +8,9 @@ import { StudentService } from '../student.service';
 })
 export class HeaderComponent implements OnInit {
   students: any[] = [];
-  @Output() studentSelected: EventEmitter<any> = new EventEmitter<any>();
+  selectedStudentId: number | null = null;
+
+  @Output() studentSelected: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private studentService: StudentService){}
 
@@ -28,9 +30,10 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  selectStudent(student : any){
-    this.studentSelected.emit(student);
+  onStudentSelected(event: any) {
+    const studentId = event.target.value;
+    if (studentId) {
+      this.studentSelected.emit(studentId);
+    }
   }
-  
-
 }
