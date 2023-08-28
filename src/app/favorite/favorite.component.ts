@@ -10,11 +10,13 @@ import { StudentService } from '../student.service';
 })
 export class FavoriteComponent implements OnInit {
 
-  selectedStudentId: number | null = null;
+  selectedStudentId: number = 0;
+  students: any[] = [];
   favorites: any[] = [];
   favoriteQuestions: any[] = [];
-  students: any[] = [];
-  questions: any[] = [];
+  
+  
+  
 
   constructor(
     private favoriteService: FavoriteService,
@@ -31,9 +33,9 @@ export class FavoriteComponent implements OnInit {
 
   getStudentsFromService() {
     this.studentService.getStudents().subscribe(
-      (data: any[]) => {
-        this.students = data;
-        console.log(data);
+      (studentData: any[]) => {
+        this.students = studentData;
+        console.log('student data',studentData);
       },
       error => {
         console.log(error);
@@ -50,6 +52,7 @@ export class FavoriteComponent implements OnInit {
   getFavoritesForStudent(studentId: number) {
     this.favoriteService.getFavorites(studentId).subscribe(
       (data: any[]) => {
+        console.log('non parsed favorites', data)
         const questionIds = data.map(favorite => favorite.questionId);
   
         // Fetch the corresponding questions one by one
@@ -71,27 +74,11 @@ export class FavoriteComponent implements OnInit {
     );
   }
 
- /* getFavoritesFromService() {
-    console.log('method called');
-    this.favoriteService.getAllFavorites().subscribe(
-      (data: any[]) => {
-        console.log('get ALL favorites Here!');
-        console.log(data);
-        this.favorites = data;
-      },
-      (error) => {
-        console.log(error);
-      }      
-    );
-  } */
+ 
 
-  getStudentName(studentId: number): string {
-    const student = this.students.find(s => s.id === studentId);
-    return student ? student.username : 'Unknown Student';
-  }
 
-  getQuestionText(questionId: number): string {
-    const question = this.questions.find(q => q.id === questionId);
-    return question ? question.question1 : 'Unknown Question';
+
+  toggleAnswer(question: any) {
+    question.isAnswerVisible = !question.isAnswerVisible;
   }
 }

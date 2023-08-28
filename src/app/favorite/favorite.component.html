@@ -4,16 +4,15 @@
     <label for="students">Select a student:</label>
     <select name="students" id="students" [(ngModel)]="selectedStudentId" (change)="onStudentSelected()">
       <option value="">Select a student</option>
-      <option *ngFor="let favorite of favorites" [value]="favorite.studentId">{{ getStudentName(favorite.studentId) }}</option>
+      <option *ngFor="let student of students" [value]="student.id">{{ student.username }}</option>
     </select>
 
     <div class="container">
         <div class="row">
             <div *ngFor="let question of favoriteQuestions" class="col-md-4 mb-4">
-                <div class="pastel-yellow-card">
-                    <div class="question">{{ getQuestionText(question.questionId) }}</div>
+                <div class="pastel-yellow-card" (click)="toggleAnswer(question)">
+                    <div class="question">{{ question.question1 }}</div>
                     <div class="answer" *ngIf="question.isAnswerVisible">{{ question.answer }}</div>
-                </div>
             </div>
         </div>
     </div>
