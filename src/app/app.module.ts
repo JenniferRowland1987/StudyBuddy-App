@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { AddQuestionComponent } from './add-question/add-question.component';
-import { HeaderComponent } from './header/header.component';
+
 import { FavoriteComponent } from './favorite/favorite.component';
 
 
@@ -16,8 +16,7 @@ import { FavoriteComponent } from './favorite/favorite.component';
   declarations: [
     AppComponent,
     QuestionListComponent,    
-    AddQuestionComponent,
-    HeaderComponent,
+    AddQuestionComponent,    
     FavoriteComponent    
    
   ],

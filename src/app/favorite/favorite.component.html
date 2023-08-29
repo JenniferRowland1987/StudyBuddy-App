@@ -12,10 +12,13 @@
             <div *ngFor="let question of favoriteQuestions" class="col-md-4 mb-4">
                 <div class="pastel-yellow-card" (click)="toggleAnswer(question)">
                     <div class="question">{{ question.question1 }}</div>
-                    <div class="answer" *ngIf="question.isAnswerVisible">{{ question.answer }}</div>
+                    <div class="answer" *ngIf="question.isAnswerVisible">{{ question.answer }}</div>                    
             </div>
+            <button (click)="removeFavoriteForStudent(selectedStudentId, question.id)">Remove Favorite</button>
         </div>
     </div>
-
+<div class="router-links">
     <a routerLink="/questions">back to questions</a>
+</div>
+    
 </div>

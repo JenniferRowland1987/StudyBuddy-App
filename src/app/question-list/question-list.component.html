@@ -1,11 +1,13 @@
 <div>
     <h1>STUDY QUESTIONS!!!!!</h1>
-    <a routerLink="/add-question">Add Question</a><br>
-    <a routerLink="/favorites">Favorites</a>
-
+    <div class="router-links">
+        <a routerLink="/add-question">Create a Question!</a>
+        <a routerLink="/favorites">View Favorites!</a>
+    </div>
+    
     <div class="container">
         <div class="row">
-            <label for="students">Add to Favorites:</label>
+            <label for="students">Select a Student:</label>
             <select name="students" id="students" [(ngModel)]="selectedStudentForFavorite" (change)="onStudentSelectedForFavorite()">
               <option value="">Select a student</option>
               <option *ngFor="let student of students" [value]="student.id">{{ student.username }}</option>

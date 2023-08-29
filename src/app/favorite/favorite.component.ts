@@ -12,8 +12,8 @@ export class FavoriteComponent implements OnInit {
 
   selectedStudentId: number = 0;
   students: any[] = [];
-  favorites: any[] = [];
-  favoriteQuestions: any[] = [];
+  favorites: any[] = [];  
+  favoriteQuestions: any[] = []; 
   
   
   
@@ -52,15 +52,17 @@ export class FavoriteComponent implements OnInit {
   getFavoritesForStudent(studentId: number) {
     this.favoriteService.getFavorites(studentId).subscribe(
       (data: any[]) => {
-        console.log('non parsed favorites', data)
-        const questionIds = data.map(favorite => favorite.questionId);
-  
-        // Fetch the corresponding questions one by one
-        this.favoriteQuestions = []; // Clear the array before adding new questions
+        console.log('raw favorite list', data)
+        this.favorites = data;
+
+        const questionIds = data.map(favorite => favorite.questionId); 
+        
+        this.favoriteQuestions = []; 
         for (const questionId of questionIds) {
           this.questionService.getQuestion(questionId).subscribe(
             (question: any) => {
               this.favoriteQuestions.push(question);
+              console.log('cooked favorites list',this.favoriteQuestions)
             },
             error => {
               console.log(error);
@@ -73,12 +75,37 @@ export class FavoriteComponent implements OnInit {
       }
     );
   }
-
  
-
-
-
   toggleAnswer(question: any) {
     question.isAnswerVisible = !question.isAnswerVisible;
   }
+
+  removeFavoriteForStudent(studentId: number, questionId: number) {
+    console.log('student Id', studentId);
+    console.log('question id', questionId);
+    console.log('favorite array', this.favorites)
+
+    
+
+    const favorite = this.favorites.find(f => f.studentId == studentId && f.questionId == questionId);
+    if (favorite) {
+      this.favoriteService.deleteFavorite(favorite.id).subscribe(
+        () => {
+          console.log('Favorite removed successfully');
+          alert('Removed from favorites!');
+          const index = this.favoriteQuestions.findIndex(q => q.id == questionId);
+          if (index !== -1) {
+            this.favoriteQuestions.splice(index, 1);
+          }
+        
+        },
+        error => {
+          console.error('Error removing favorite:', error);
+        }
+      );
+    } else {
+      console.error('Favorite not found.');
+    }
+  }
 }
+

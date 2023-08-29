@@ -30,7 +30,7 @@ export class QuestionListComponent implements OnInit {
 
   getQuestionsFromService() {
     console.log('method called');
-    console.log('selected student', this.selectedStudentForFavorite);
+    console.log('selected student from header to questions', this.selectedStudentForFavorite);
     this.dataService.getQuestions().subscribe(
       (data: any[]) => {
         console.log('get Questions Here!');
@@ -55,7 +55,8 @@ export class QuestionListComponent implements OnInit {
     if (studentId !== null) {
       this.favoriteService.createFavorite(studentId, questionId).subscribe(
         () => {
-          console.log('Question added to favorites');
+          console.log('Question added to favorites');          
+          alert('Added to favorites!');
         },
         error => {
           console.error('Error adding question to favorites:', error);
